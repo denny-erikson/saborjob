@@ -1,14 +1,66 @@
+import hashlib
 import html
 import json
+import os
 import re
 from math import ceil
 from pathlib import Path
+from textwrap import dedent
 
+import numpy as np
 import streamlit as st
+
+
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "")
 
 
 DATA_FILE = Path("data/solides_jobs.json")
 PAGE_SIZE_OPTIONS = [4, 6, 8, 10, 12]
+EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+PROFILE_KEYWORDS = [
+    "python",
+    "django",
+    "flask",
+    "fastapi",
+    "java",
+    "spring",
+    "javascript",
+    "typescript",
+    "node",
+    "react",
+    "next.js",
+    "next",
+    "angular",
+    "vue",
+    "php",
+    "laravel",
+    "c#",
+    ".net",
+    "dotnet",
+    "golang",
+    "go",
+    "ruby",
+    "rails",
+    "aws",
+    "azure",
+    "gcp",
+    "docker",
+    "kubernetes",
+    "sql",
+    "postgresql",
+    "mysql",
+    "mongodb",
+    "redis",
+    "graphql",
+    "rest",
+    "microservices",
+    "api",
+]
+SENIORITY_PATTERNS = {
+    "Junior": [r"\bjunior\b", r"\bjr\b", r"\btrainee\b", r"\bestagi[áa]rio\b"],
+    "Pleno": [r"\bpleno\b", r"\bpl\b", r"\bmid\b", r"\bintermedi[áa]rio\b"],
+    "Senior": [r"\bsenior\b", r"\bsr\b", r"\bespecialista\b", r"\blead\b", r"\bstaff\b"],
+}
 
 
 @st.cache_data(show_spinner=False)
@@ -25,6 +77,12 @@ def normalize_posted_at(value: str | None) -> str:
     if not value:
         return "Data indisponivel"
     return value.strip()
+
+
+def normalize_match_text(value: str | None) -> str:
+    if not value:
+        return ""
+    return re.sub(r"\s+", " ", value).strip().lower()
 
 
 def parse_posted_days(value: str | None) -> int:
@@ -92,7 +150,277 @@ def apply_filters(
     return filtered_jobs
 
 
-def sort_jobs(jobs: list[dict], sort_option: str) -> list[dict]:
+@st.cache_resource(show_spinner=False)
+def load_embedding_model(model_name: str):
+    try:
+        from sentence_transformers import SentenceTransformer
+    except ImportError as exc:
+        raise RuntimeError(
+            "Dependencia ausente para ranking local. Instale sentence-transformers."
+        ) from exc
+
+    return SentenceTransformer(model_name, device="cpu")
+
+
+@st.cache_data(show_spinner=False)
+def extract_text_from_pdf_bytes(pdf_bytes: bytes) -> str:
+    try:
+        import fitz
+    except ImportError as exc:
+        raise RuntimeError("Dependencia ausente para leitura de PDF. Instale PyMuPDF.") from exc
+
+    document = fitz.open(stream=pdf_bytes, filetype="pdf")
+    chunks: list[str] = []
+
+    for page in document:
+        text = page.get_text("text")
+        if text:
+            chunks.append(text)
+
+    document.close()
+    return "\n".join(chunks).strip()
+
+
+def extract_profile_keywords(text: str) -> list[str]:
+    normalized_text = normalize_match_text(text)
+    matches: list[str] = []
+
+    for keyword in PROFILE_KEYWORDS:
+        pattern = re.escape(keyword.lower()).replace(r"\ ", r"\s+")
+        if re.search(rf"(?<!\w){pattern}(?!\w)", normalized_text):
+            matches.append(keyword)
+
+    return matches
+
+
+def extract_seniority(text: str) -> str | None:
+    normalized_text = normalize_match_text(text)
+
+    for seniority, patterns in SENIORITY_PATTERNS.items():
+        if any(re.search(pattern, normalized_text) for pattern in patterns):
+            return seniority
+
+    return None
+
+
+def extract_work_mode(text: str) -> str | None:
+    normalized_text = normalize_match_text(text)
+
+    if "remoto" in normalized_text or "home office" in normalized_text:
+        return "Remoto"
+    if "hibrido" in normalized_text or "híbrido" in normalized_text:
+        return "Hibrido"
+    if "presencial" in normalized_text:
+        return "Presencial"
+    return None
+
+
+def build_resume_profile(resume_text: str) -> dict:
+    condensed_text = re.sub(r"\s+", " ", resume_text).strip()
+    keywords = extract_profile_keywords(condensed_text)
+    seniority = extract_seniority(condensed_text)
+    work_mode = extract_work_mode(condensed_text)
+
+    profile_text_parts = []
+    if seniority:
+        profile_text_parts.append(f"Senioridade: {seniority}")
+    if work_mode:
+        profile_text_parts.append(f"Preferencia: {work_mode}")
+    if keywords:
+        profile_text_parts.append(f"Tecnologias: {', '.join(keywords[:14])}")
+    profile_text_parts.append(condensed_text[:3500])
+
+    return {
+        "text": condensed_text,
+        "keywords": keywords,
+        "seniority": seniority,
+        "work_mode": work_mode,
+        "profile_text": " | ".join(part for part in profile_text_parts if part),
+    }
+
+
+def build_job_search_text(job: dict) -> str:
+    tags = ", ".join(job.get("tags") or [])
+    return " | ".join(
+        [
+            f"Titulo: {job.get('title') or ''}",
+            f"Empresa: {job.get('company') or ''}",
+            f"Local: {job.get('location') or ''}",
+            f"Tags: {tags}",
+            f"Publicado: {job.get('posted_at') or ''}",
+        ]
+    )
+
+
+@st.cache_data(show_spinner=False)
+def encode_job_texts(texts: tuple[str, ...], model_name: str) -> list[list[float]]:
+    model = load_embedding_model(model_name)
+    embeddings = model.encode(list(texts), normalize_embeddings=True, device="cpu")
+    return embeddings.tolist()
+
+
+def cosine_similarity_scores(job_embeddings: np.ndarray, resume_embedding: np.ndarray) -> np.ndarray:
+    scores = job_embeddings @ resume_embedding
+    return np.clip((scores + 1) / 2, 0, 1)
+
+
+def extract_job_keywords(job: dict) -> list[str]:
+    searchable = normalize_match_text(
+        " ".join(
+            [
+                job.get("title") or "",
+                job.get("company") or "",
+                job.get("location") or "",
+                " ".join(job.get("tags") or []),
+            ]
+        )
+    )
+
+    matches: list[str] = []
+    for keyword in PROFILE_KEYWORDS:
+        pattern = re.escape(keyword.lower()).replace(r"\ ", r"\s+")
+        if re.search(rf"(?<!\w){pattern}(?!\w)", searchable):
+            matches.append(keyword)
+    return matches
+
+
+def extract_job_seniority(job: dict) -> str | None:
+    searchable = normalize_match_text(
+        " ".join([job.get("title") or "", " ".join(job.get("tags") or [])])
+    )
+
+    for seniority, patterns in SENIORITY_PATTERNS.items():
+        if any(re.search(pattern, searchable) for pattern in patterns):
+            return seniority
+    return None
+
+
+def build_match_reasons(
+    job: dict,
+    profile: dict,
+    keyword_overlap: list[str],
+    seniority_match: bool,
+    work_mode_match: bool,
+    semantic_score: float,
+) -> list[str]:
+    reasons: list[str] = []
+
+    if keyword_overlap:
+        reasons.append(f"Stack relacionada: {', '.join(keyword_overlap[:3])}")
+    if seniority_match and profile.get("seniority"):
+        reasons.append(f"Senioridade alinhada a {profile['seniority']}")
+    if work_mode_match and profile.get("work_mode") == "Remoto":
+        reasons.append("Modelo remoto compatível")
+    elif work_mode_match and profile.get("work_mode"):
+        reasons.append(f"Modelo {profile['work_mode'].lower()} compatível")
+    if semantic_score >= 0.72:
+        reasons.append("Alta similaridade com o currículo")
+    elif semantic_score >= 0.6:
+        reasons.append("Boa proximidade com o perfil")
+
+    if not reasons:
+        reasons.append("Match geral por contexto do currículo")
+
+    return reasons[:3]
+
+
+def encode_resume_text(text: str, model_name: str) -> np.ndarray:
+    model = load_embedding_model(model_name)
+    embedding = model.encode([text], normalize_embeddings=True, device="cpu")[0]
+    return np.array(embedding, dtype=float)
+
+
+def analyze_resume_match(
+    jobs: list[dict],
+    resume_text: str,
+    progress_callback=None,
+) -> tuple[dict, dict[str, dict]]:
+    if progress_callback:
+        progress_callback(10, "Lendo o texto do curriculo")
+    profile = build_resume_profile(resume_text)
+
+    if progress_callback:
+        progress_callback(30, "Carregando o modelo local em CPU")
+    resume_embedding = encode_resume_text(profile["profile_text"], EMBEDDING_MODEL_NAME)
+
+    job_texts = tuple(build_job_search_text(job) for job in jobs)
+
+    if progress_callback:
+        progress_callback(60, "Calculando representacao semantica das vagas")
+    job_embeddings = np.array(encode_job_texts(job_texts, EMBEDDING_MODEL_NAME), dtype=float)
+
+    if progress_callback:
+        progress_callback(80, "Comparando perfil e vagas")
+    semantic_scores = cosine_similarity_scores(job_embeddings, resume_embedding)
+
+    match_results: dict[str, dict] = {}
+
+    for job, semantic_score in zip(jobs, semantic_scores):
+        job_keywords = extract_job_keywords(job)
+        keyword_overlap = sorted(set(profile["keywords"]).intersection(job_keywords))
+
+        if profile["keywords"]:
+            keyword_score = min(len(keyword_overlap) / min(len(profile["keywords"]), 6), 1.0)
+        else:
+            keyword_score = 0.0
+
+        job_seniority = extract_job_seniority(job)
+        seniority_match = bool(profile["seniority"] and job_seniority == profile["seniority"])
+        work_mode_match = bool(profile["work_mode"] == "Remoto" and is_remote(job))
+
+        final_score = round(
+            min(
+                100,
+                (semantic_score * 65)
+                + (keyword_score * 25)
+                + (10 if seniority_match else 0)
+                + (8 if work_mode_match else 0),
+            )
+        )
+
+        match_results[job.get("url") or build_job_search_text(job)] = {
+            "score": final_score,
+            "semantic_score": round(float(semantic_score) * 100),
+            "keyword_overlap": keyword_overlap,
+            "seniority_match": seniority_match,
+            "work_mode_match": work_mode_match,
+            "reasons": build_match_reasons(
+                job,
+                profile,
+                keyword_overlap,
+                seniority_match,
+                work_mode_match,
+                float(semantic_score),
+            ),
+        }
+
+    if progress_callback:
+        progress_callback(100, "Analise finalizada")
+
+    return profile, match_results
+
+
+def get_resume_digest(pdf_bytes: bytes) -> str:
+    return hashlib.sha256(pdf_bytes).hexdigest()
+
+
+def clear_resume_analysis() -> None:
+    st.session_state["resume_profile"] = None
+    st.session_state["resume_match_results"] = None
+    st.session_state["resume_analyzed_digest"] = None
+    st.session_state["resume_error"] = None
+
+
+def sort_jobs(jobs: list[dict], sort_option: str, match_results: dict[str, dict] | None = None) -> list[dict]:
+    if sort_option == "Maior aderencia" and match_results:
+        return sorted(
+            jobs,
+            key=lambda job: (
+                -(match_results.get(job.get("url") or "", {}).get("score", 0)),
+                parse_posted_days(job.get("posted_at")),
+            ),
+        )
+
     if sort_option == "Empresa (A-Z)":
         return sorted(jobs, key=lambda job: (job.get("company") or "").lower())
 
@@ -103,15 +431,17 @@ def sort_jobs(jobs: list[dict], sort_option: str) -> list[dict]:
 
 
 def build_metric_card(label: str, value: str, helper: str) -> str:
-    return f"""
-    <div class="metric-card">
-        <div>
-            <span class="metric-label">{html.escape(label)}</span>
-            <strong class="metric-value">{html.escape(value)}</strong>
+    return dedent(
+        f"""
+        <div class="metric-card">
+            <div>
+                <span class="metric-label">{html.escape(label)}</span>
+                <strong class="metric-value">{html.escape(value)}</strong>
+            </div>
+            <span class="metric-helper">{html.escape(helper)}</span>
         </div>
-        <span class="metric-helper">{html.escape(helper)}</span>
-    </div>
-    """
+        """
+    ).strip()
 
 
 def build_tag_pills(tags: list[str]) -> str:
@@ -124,7 +454,7 @@ def build_tag_pills(tags: list[str]) -> str:
     )
 
 
-def build_job_card(job: dict) -> str:
+def build_job_card(job: dict, match_data: dict | None = None) -> str:
     title = html.escape(job.get("title") or "Titulo indisponivel")
     company = html.escape(job.get("company") or "Empresa nao informada")
     location = html.escape(job.get("location") or "Local nao informado")
@@ -132,27 +462,42 @@ def build_job_card(job: dict) -> str:
     url = html.escape(job.get("url") or "#", quote=True)
     tags = build_tag_pills(job.get("tags") or [])
     remote_badge = '<span class="status-pill">Remoto</span>' if is_remote(job) else ""
+    score_badge = ""
+    match_reasons = ""
 
-    return f"""
-    <article class="job-card">
-        <div class="job-card-top">
-            <div>
-                <span class="eyebrow">Vaga ativa</span>
-                <h3>{title}</h3>
-            </div>
-            {remote_badge}
-        </div>
-        <div class="job-meta">
-            <span>{company}</span>
-            <span>{location}</span>
-            <span>{posted_at}</span>
-        </div>
-        <div class="job-footer">
-            <div class="tag-row">{tags}</div>
-            <a class="job-link" href="{url}" target="_blank">Abrir vaga</a>
-        </div>
-    </article>
-    """
+    if match_data:
+        score_badge = f'<span class="score-pill">{match_data["score"]}% aderente</span>'
+        match_reasons = "".join(
+            f'<span class="signal-pill">{html.escape(reason)}</span>'
+            for reason in match_data.get("reasons", [])
+        )
+
+    return "".join(
+        [
+            '<div class="job-card">',
+            '<div class="job-card-top">',
+            "<div>",
+            '<span class="eyebrow">Vaga ativa</span>',
+            f"<h3>{title}</h3>",
+            "</div>",
+            '<div class="job-badges">',
+            score_badge,
+            remote_badge,
+            "</div>",
+            "</div>",
+            '<div class="job-meta">',
+            f"<span>{company}</span>",
+            f"<span>{location}</span>",
+            f"<span>{posted_at}</span>",
+            "</div>",
+            f'<div class="signal-row">{match_reasons}</div>',
+            '<div class="job-footer">',
+            f'<div class="tag-row">{tags}</div>',
+            f'<a class="job-link" href="{url}" target="_blank">Abrir vaga</a>',
+            "</div>",
+            "</div>",
+        ]
+    )
 
 
 def inject_styles() -> None:
@@ -257,11 +602,11 @@ def inject_styles() -> None:
             font-size: clamp(1.4rem, 1.9vw, 2rem);
             line-height: 1.02;
             letter-spacing: -0.04em;
-            max-width: 15ch;
+            max-width: 64ch;
         }
 
         .hero-copy {
-            max-width: 64ch;
+            max-width: 100ch;
             color: var(--text-soft);
             font-size: 0.9rem;
             line-height: 1.45;
@@ -368,6 +713,14 @@ def inject_styles() -> None:
             margin-bottom: 0.6rem;
         }
 
+        .job-badges {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.45rem;
+            flex-wrap: wrap;
+        }
+
         .job-card h3 {
             margin: 0.25rem 0 0;
             font-size: 1.12rem;
@@ -385,7 +738,9 @@ def inject_styles() -> None:
         }
 
         .status-pill,
-        .tag-pill {
+        .tag-pill,
+        .score-pill,
+        .signal-pill {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -402,6 +757,15 @@ def inject_styles() -> None:
             background: var(--accent-soft);
             color: var(--accent-strong);
             border: 1px solid rgba(15, 118, 110, 0.16);
+        }
+
+        .score-pill {
+            white-space: nowrap;
+            height: fit-content;
+            padding: 0.55rem 0.85rem;
+            background: rgba(15, 23, 42, 0.06);
+            color: var(--text-main);
+            border: 1px solid rgba(15, 23, 42, 0.08);
         }
 
         .job-meta {
@@ -427,6 +791,14 @@ def inject_styles() -> None:
             flex-wrap: wrap;
         }
 
+        .signal-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-bottom: 0.8rem;
+            min-height: 1px;
+        }
+
         .tag-row {
             display: flex;
             flex-wrap: wrap;
@@ -438,6 +810,14 @@ def inject_styles() -> None:
             background: rgba(15, 23, 42, 0.05);
             color: var(--text-soft);
             border: 1px solid rgba(15, 23, 42, 0.05);
+        }
+
+        .signal-pill {
+            padding: 0.42rem 0.68rem;
+            background: rgba(15, 118, 110, 0.08);
+            color: var(--accent-strong);
+            border: 1px solid rgba(15, 118, 110, 0.14);
+            justify-content: flex-start;
         }
 
         .tag-pill.muted {
@@ -502,6 +882,32 @@ def inject_styles() -> None:
             margin-bottom: 0.8rem;
         }
 
+        .profile-summary {
+            padding: 0.95rem 1rem;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+            margin: 0.2rem 0 0.9rem;
+        }
+
+        .profile-summary strong,
+        .profile-summary span {
+            display: block;
+        }
+
+        .profile-summary strong {
+            color: var(--text-main);
+            font-size: 0.96rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .profile-summary span {
+            color: var(--text-soft);
+            font-size: 0.88rem;
+            line-height: 1.45;
+        }
+
         .empty-state {
             padding: 2rem;
             text-align: center;
@@ -535,12 +941,12 @@ def render_hero(total_jobs: int) -> None:
     st.markdown(
         f"""
         <section class="hero-panel">
-            <span class="hero-kicker">Job Radar</span>
-            <h1 class="hero-title">Radar de vagas Full Stack com leitura rapida e foco no que importa.</h1>
+            <span class="hero-kicker">SaborJob</span>
+            <h1 class="hero-title">Aqui não tem vaga ruim. Aqui é só job com sabor.</h1>
             <p class="hero-copy">
-                Explore as oportunidades coletadas da Solides com uma visualizacao mais enxuta,
-                filtros sempre acessiveis na lateral e cards prontos para triagem objetiva. Hoje o radar mostra
-                <strong>{total_jobs}</strong> vagas disponiveis no arquivo local.
+                Chega de perder tempo com vaga genérica. O SaborJob organiza tudo de forma simples e direta,
+                pra você bater o olho e já saber se vale a pena. Filtre rápido, analise melhor e foque no que tem
+                valor de verdade. Hoje o radar mostra <strong>{total_jobs}</strong> vagas disponíveis.
             </p>
         </section>
         """,
@@ -548,18 +954,44 @@ def render_hero(total_jobs: int) -> None:
     )
 
 
-def render_metrics(jobs: list[dict]) -> None:
+def render_profile_summary(profile: dict) -> None:
+    st.markdown(
+        f"""
+        <div class="profile-summary">
+            <strong>Perfil identificado</strong>
+            <span>Senioridade: {html.escape(profile.get("seniority") or "Nao identificada")}</span>
+            <span>Modelo de trabalho: {html.escape(profile.get("work_mode") or "Nao identificado")}</span>
+            <span>Tecnologias-chave: {html.escape(', '.join(profile.get("keywords", [])[:8]) or "Nao identificadas")}</span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def render_metrics(jobs: list[dict], match_results: dict[str, dict] | None = None) -> None:
     companies = len({job.get("company") for job in jobs if job.get("company")})
     locations = len({job.get("location") for job in jobs if job.get("location")})
     remote_jobs = sum(1 for job in jobs if is_remote(job))
     recent_jobs = sum(1 for job in jobs if parse_posted_days(job.get("posted_at")) <= 7)
+    strong_matches = 0
+
+    if match_results:
+        strong_matches = sum(1 for result in match_results.values() if result.get("score", 0) >= 70)
 
     metric_columns = st.columns(4)
     metrics = [
         ("Vagas", str(len(jobs)), "Volume total carregado no dashboard"),
         ("Empresas", str(companies), "Marcas unicas nas listagens"),
         ("Locais", str(locations), "Cidades ou regioes representadas"),
-        ("Recentes", str(recent_jobs), f"{remote_jobs} com indicativo de trabalho remoto"),
+        (
+            "Aderentes" if match_results else "Recentes",
+            str(strong_matches if match_results else recent_jobs),
+            (
+                "Vagas com score igual ou acima de 70%"
+                if match_results
+                else f"{remote_jobs} com indicativo de trabalho remoto"
+            ),
+        ),
     ]
 
     for column, metric in zip(metric_columns, metrics):
@@ -569,7 +1001,8 @@ def render_metrics(jobs: list[dict]) -> None:
 
 def render_sidebar_filters(
     jobs: list[dict],
-) -> tuple[str, list[str], list[str], list[str], str, int]:
+    profile_active: bool,
+) -> tuple[str, list[str], list[str], list[str], str, int, object | None, bool, bool]:
     all_locations = sorted({job.get("location") for job in jobs if job.get("location")})
     all_companies = sorted({job.get("company") for job in jobs if job.get("company")})
     all_tags = sorted({tag for job in jobs for tag in (job.get("tags") or [])})
@@ -585,12 +1018,27 @@ def render_sidebar_filters(
             value="",
             placeholder="Titulo, empresa, local ou tag",
         )
+        sort_options = ["Mais recentes", "Empresa (A-Z)", "Local (A-Z)"]
+        if profile_active:
+            sort_options.insert(0, "Maior aderencia")
         sort_option = st.selectbox(
             "Ordenar por",
-            ["Mais recentes", "Empresa (A-Z)", "Local (A-Z)"],
+            sort_options,
             index=0,
         )
         page_size = st.selectbox("Vagas por pagina", PAGE_SIZE_OPTIONS, index=1)
+        st.markdown("### Perfil")
+        uploaded_resume = st.file_uploader("Curriculo em PDF", type=["pdf"], key="resume_uploader")
+        analyze_clicked = st.button(
+            "Analisar curriculo",
+            use_container_width=True,
+            disabled=uploaded_resume is None,
+        )
+        clear_clicked = st.button(
+            "Limpar analise",
+            use_container_width=True,
+            disabled=not profile_active and uploaded_resume is None,
+        )
         selected_locations = st.multiselect("Localizacoes", all_locations)
         selected_companies = st.multiselect("Empresas", all_companies)
         selected_tags = st.multiselect("Tags", all_tags)
@@ -602,6 +1050,9 @@ def render_sidebar_filters(
         selected_tags,
         sort_option,
         page_size,
+        uploaded_resume,
+        analyze_clicked,
+        clear_clicked,
     )
 
 
@@ -669,9 +1120,10 @@ def main() -> None:
     if not jobs:
         return
 
-    render_hero(len(jobs))
-    render_metrics(jobs)
-
+    profile = st.session_state.get("resume_profile")
+    match_results = st.session_state.get("resume_match_results")
+    profile_active = bool(match_results)
+    sidebar_values = render_sidebar_filters(jobs, profile_active=profile_active)
     (
         search_value,
         selected_locations,
@@ -679,7 +1131,35 @@ def main() -> None:
         selected_tags,
         sort_option,
         page_size,
-    ) = render_sidebar_filters(jobs)
+        uploaded_resume,
+        analyze_clicked,
+        clear_clicked,
+    ) = sidebar_values
+
+    current_resume_bytes = uploaded_resume.getvalue() if uploaded_resume is not None else None
+    current_resume_digest = get_resume_digest(current_resume_bytes) if current_resume_bytes else None
+    analyzed_resume_digest = st.session_state.get("resume_analyzed_digest")
+
+    if clear_clicked:
+        clear_resume_analysis()
+        st.session_state["resume_uploader"] = None
+        st.rerun()
+
+    with st.sidebar:
+        if st.session_state.get("resume_error"):
+            st.error(st.session_state["resume_error"])
+        if uploaded_resume is None:
+            st.caption("Envie um PDF para ranquear as vagas por aderencia.")
+        elif current_resume_digest == analyzed_resume_digest and match_results:
+            st.success("Curriculo analisado. A ordenacao por aderencia esta disponivel.")
+        else:
+            st.info("Curriculo carregado. Clique em analisar para atualizar os matches.")
+
+    render_hero(len(jobs))
+    render_metrics(jobs, match_results)
+
+    if profile:
+        render_profile_summary(profile)
 
     filtered_jobs = apply_filters(
         jobs,
@@ -688,7 +1168,7 @@ def main() -> None:
         selected_companies,
         selected_tags,
     )
-    filtered_jobs = sort_jobs(filtered_jobs, sort_option)
+    filtered_jobs = sort_jobs(filtered_jobs, sort_option, match_results)
 
     st.markdown(
         f"""
@@ -701,6 +1181,43 @@ def main() -> None:
         """,
         unsafe_allow_html=True,
     )
+
+    if analyze_clicked and current_resume_bytes is not None:
+        progress_placeholder = st.empty()
+        status_placeholder = st.empty()
+
+        try:
+            progress_bar = progress_placeholder.progress(0, text="Preparando a analise local")
+            status_box = status_placeholder.status("Processando curriculo", expanded=True)
+
+            def update_progress(step: int, message: str) -> None:
+                progress_bar.progress(step, text=message)
+                status_box.write(message)
+
+            update_progress(5, "Extraindo texto do PDF")
+            resume_text = extract_text_from_pdf_bytes(current_resume_bytes)
+            if not resume_text:
+                raise RuntimeError("Nao foi possivel extrair texto do PDF enviado.")
+
+            profile, match_results = analyze_resume_match(jobs, resume_text, progress_callback=update_progress)
+            st.session_state["resume_profile"] = profile
+            st.session_state["resume_match_results"] = match_results
+            st.session_state["resume_analyzed_digest"] = current_resume_digest
+            st.session_state["resume_error"] = None
+
+            progress_bar.progress(100, text="Analise concluida")
+            status_box.update(label="Curriculo processado com sucesso", state="complete", expanded=False)
+            st.rerun()
+        except RuntimeError as exc:
+            clear_resume_analysis()
+            st.session_state["resume_error"] = str(exc)
+            status_placeholder.error(str(exc))
+            progress_placeholder.empty()
+        except Exception as exc:
+            clear_resume_analysis()
+            st.session_state["resume_error"] = str(exc)
+            status_placeholder.error(f"Falha ao analisar o curriculo: {exc}")
+            progress_placeholder.empty()
 
     if not filtered_jobs:
         st.markdown(
@@ -728,7 +1245,10 @@ def main() -> None:
     end = start + page_size
 
     for job in filtered_jobs[start:end]:
-        st.markdown(build_job_card(job), unsafe_allow_html=True)
+        job_match = None
+        if match_results:
+            job_match = match_results.get(job.get("url") or "")
+        st.html(build_job_card(job, job_match))
 
     render_pagination(page_number, total_pages)
     st.caption(f"Fonte local: {DATA_FILE}")
