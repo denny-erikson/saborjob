@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -14,6 +15,13 @@ SEARCH_URL = "https://vagas.solides.com.br/vagas/todos/desenvolvedor-full-stack?
 
 OUTPUT_DIR = Path("data")
 OUTPUT_DIR.mkdir(exist_ok=True)
+
+
+def get_bool_env(name: str, default: bool) -> bool:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
 
 
 @dataclass
@@ -109,10 +117,14 @@ def extract_jobs_from_listing(page) -> list[JobItem]:
 
 
 def main() -> None:
+    headless = get_bool_env("SCRAPER_HEADLESS", False)
+    save_debug_artifacts = get_bool_env("SCRAPER_SAVE_DEBUG", True)
+    slow_mo = int(os.getenv("SCRAPER_SLOW_MO", "150" if not headless else "0"))
+
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            headless=False,
-            slow_mo=150,
+            headless=headless,
+            slow_mo=slow_mo,
         )
 
         context = browser.new_context(
@@ -134,9 +146,9 @@ def main() -> None:
             # garante que a lista apareceu
             page.wait_for_selector('ul[data-cy="list-vacancies"] > li', timeout=15000)
 
-            # debug
-            page.screenshot(path=str(OUTPUT_DIR / "solides-search.png"), full_page=True)
-            (OUTPUT_DIR / "solides-search.html").write_text(page.content(), encoding="utf-8")
+            if save_debug_artifacts:
+                page.screenshot(path=str(OUTPUT_DIR / "solides-search.png"), full_page=True)
+                (OUTPUT_DIR / "solides-search.html").write_text(page.content(), encoding="utf-8")
 
             jobs = extract_jobs_from_listing(page)
 
