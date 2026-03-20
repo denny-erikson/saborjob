@@ -628,7 +628,7 @@ def inject_styles() -> None:
             font-size: clamp(1.4rem, 1.9vw, 2rem);
             line-height: 1.02;
             letter-spacing: -0.04em;
-            max-width: 64ch;
+            max-width: 30ch;
         }
 
         .hero-copy {
@@ -978,11 +978,9 @@ def render_hero(total_jobs: int) -> None:
         f"""
         <section class="hero-panel">
             <span class="hero-kicker">{BRAND_NAME}</span>
-            <h1 class="hero-title">Leitura rapida para focar nas vagas que realmente valem a pena.</h1>
+            <h1 class="hero-title">Não é só sobre buscar vaga.<br>É sentir quando vale a pena.</h1>
             <p class="hero-copy">
-                O {BRAND_NAME} combina triagem objetiva com uma camada de leitura intuitiva. A aderencia segue
-                como metrica principal, enquanto o sabor ajuda voce a perceber com rapidez o potencial real de
-                cada vaga. Hoje o painel mostra <strong>{total_jobs}</strong> vagas disponiveis.
+                O {BRAND_NAME} traz triagem objetiva com uma camada de leitura intuitiva. A aderência mede o fit, e o sabor traduz o valor real da oportunidade — rápido, direto e sem ruído.Hoje o painel mostra <strong>{total_jobs}</strong> vagas disponiveis.
             </p>
         </section>
         """,
