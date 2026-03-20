@@ -17,6 +17,9 @@ os.environ.setdefault("CUDA_VISIBLE_DEVICES", "")
 DATA_FILE = Path("data/solides_jobs.json")
 PAGE_SIZE_OPTIONS = [4, 6, 8, 10, 12]
 EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+BRAND_NAME = "SaborJob"
+ADHERENCE_TOOLTIP = "Percentual estimado de compatibilidade entre a vaga e seu curriculo."
+FLAVOR_TOOLTIP = "Leitura rapida do potencial da vaga. Quanto mais sabor, mais faz sentido olhar com atencao."
 PROFILE_KEYWORDS = [
     "python",
     "django",
@@ -306,7 +309,7 @@ def build_match_reasons(
     reasons: list[str] = []
 
     if keyword_overlap:
-        reasons.append(f"Stack relacionada: {', '.join(keyword_overlap[:3])}")
+        reasons.append(f"Stack no ponto: {', '.join(keyword_overlap[:3])}")
     if seniority_match and profile.get("seniority"):
         reasons.append(f"Senioridade alinhada a {profile['seniority']}")
     if work_mode_match and profile.get("work_mode") == "Remoto":
@@ -314,12 +317,12 @@ def build_match_reasons(
     elif work_mode_match and profile.get("work_mode"):
         reasons.append(f"Modelo {profile['work_mode'].lower()} compatível")
     if semantic_score >= 0.72:
-        reasons.append("Alta similaridade com o currículo")
+        reasons.append("Boa leitura com seu perfil")
     elif semantic_score >= 0.6:
-        reasons.append("Boa proximidade com o perfil")
+        reasons.append("Perfil com boa proximidade")
 
     if not reasons:
-        reasons.append("Match geral por contexto do currículo")
+        reasons.append("Leitura geral positiva para o seu perfil")
 
     return reasons[:3]
 
@@ -411,6 +414,18 @@ def clear_resume_analysis() -> None:
     st.session_state["resume_error"] = None
 
 
+def get_flavor_label(score: int) -> str:
+    if score <= 39:
+        return "sem sabor"
+    if score <= 54:
+        return "pouco tempero"
+    if score <= 69:
+        return "bom sabor"
+    if score <= 84:
+        return "sabor alto"
+    return "sabor absurdo"
+
+
 def sort_jobs(jobs: list[dict], sort_option: str, match_results: dict[str, dict] | None = None) -> list[dict]:
     if sort_option == "Maior aderencia" and match_results:
         return sorted(
@@ -463,10 +478,20 @@ def build_job_card(job: dict, match_data: dict | None = None) -> str:
     tags = build_tag_pills(job.get("tags") or [])
     remote_badge = '<span class="status-pill">Remoto</span>' if is_remote(job) else ""
     score_badge = ""
+    flavor_badge = ""
     match_reasons = ""
 
     if match_data:
-        score_badge = f'<span class="score-pill">{match_data["score"]}% aderente</span>'
+        score_badge = (
+            f'<span class="score-pill" title="{html.escape(ADHERENCE_TOOLTIP, quote=True)}">'
+            f'{match_data["score"]}% aderencia'
+            "</span>"
+        )
+        flavor_badge = (
+            f'<span class="flavor-pill" title="{html.escape(FLAVOR_TOOLTIP, quote=True)}">'
+            f'{html.escape(get_flavor_label(match_data["score"]))}'
+            "</span>"
+        )
         match_reasons = "".join(
             f'<span class="signal-pill">{html.escape(reason)}</span>'
             for reason in match_data.get("reasons", [])
@@ -482,6 +507,7 @@ def build_job_card(job: dict, match_data: dict | None = None) -> str:
             "</div>",
             '<div class="job-badges">',
             score_badge,
+            flavor_badge,
             remote_badge,
             "</div>",
             "</div>",
@@ -740,6 +766,7 @@ def inject_styles() -> None:
         .status-pill,
         .tag-pill,
         .score-pill,
+        .flavor-pill,
         .signal-pill {
             display: inline-flex;
             align-items: center;
@@ -766,6 +793,15 @@ def inject_styles() -> None:
             background: rgba(15, 23, 42, 0.06);
             color: var(--text-main);
             border: 1px solid rgba(15, 23, 42, 0.08);
+        }
+
+        .flavor-pill {
+            white-space: nowrap;
+            height: fit-content;
+            padding: 0.55rem 0.85rem;
+            background: rgba(15, 118, 110, 0.10);
+            color: var(--accent-strong);
+            border: 1px solid rgba(15, 118, 110, 0.16);
         }
 
         .job-meta {
@@ -941,17 +977,18 @@ def render_hero(total_jobs: int) -> None:
     st.markdown(
         f"""
         <section class="hero-panel">
-            <span class="hero-kicker">SaborJob</span>
-            <h1 class="hero-title">Aqui não tem vaga ruim. Aqui é só job com sabor.</h1>
+            <span class="hero-kicker">{BRAND_NAME}</span>
+            <h1 class="hero-title">Leitura rapida para focar nas vagas que realmente valem a pena.</h1>
             <p class="hero-copy">
-                Chega de perder tempo com vaga genérica. O SaborJob organiza tudo de forma simples e direta,
-                pra você bater o olho e já saber se vale a pena. Filtre rápido, analise melhor e foque no que tem
-                valor de verdade. Hoje o radar mostra <strong>{total_jobs}</strong> vagas disponíveis.
+                O {BRAND_NAME} combina triagem objetiva com uma camada de leitura intuitiva. A aderencia segue
+                como metrica principal, enquanto o sabor ajuda voce a perceber com rapidez o potencial real de
+                cada vaga. Hoje o painel mostra <strong>{total_jobs}</strong> vagas disponiveis.
             </p>
         </section>
         """,
         unsafe_allow_html=True,
     )
+    st.caption(f"Aderencia: {ADHERENCE_TOOLTIP} Sabor: {FLAVOR_TOOLTIP}")
 
 
 def render_profile_summary(profile: dict) -> None:
@@ -1010,7 +1047,7 @@ def render_sidebar_filters(
     with st.sidebar:
         st.markdown('<div class="sidebar-title">Filtros</div>', unsafe_allow_html=True)
         st.markdown(
-            '<div class="sidebar-copy">Busca, refinamento e ordenacao permanecem fixos na lateral para a navegacao ficar mais fluida.</div>',
+            '<div class="sidebar-copy">Busca, refinamento e ordenacao permanecem fixos na lateral para a navegacao ficar fluida e destacar o que tem mais sabor para o seu perfil.</div>',
             unsafe_allow_html=True,
         )
         search_value = st.text_input(
@@ -1025,6 +1062,7 @@ def render_sidebar_filters(
             "Ordenar por",
             sort_options,
             index=0,
+            help="Ordene por aderencia para ver primeiro as vagas com mais sabor para o seu perfil.",
         )
         page_size = st.selectbox("Vagas por pagina", PAGE_SIZE_OPTIONS, index=1)
         st.markdown("### Perfil")
@@ -1109,7 +1147,7 @@ def render_pagination(page_number: int, total_pages: int) -> int:
 
 def main() -> None:
     st.set_page_config(
-        page_title="Job Radar Solides",
+        page_title=BRAND_NAME,
         page_icon=":briefcase:",
         layout="wide",
     )
@@ -1149,11 +1187,11 @@ def main() -> None:
         if st.session_state.get("resume_error"):
             st.error(st.session_state["resume_error"])
         if uploaded_resume is None:
-            st.caption("Envie um PDF para ranquear as vagas por aderencia.")
+            st.caption("Envie um PDF para calcular aderencia e descobrir quais vagas tem mais sabor para o seu perfil.")
         elif current_resume_digest == analyzed_resume_digest and match_results:
-            st.success("Curriculo analisado. A ordenacao por aderencia esta disponivel.")
+            st.success("Curriculo analisado. A ordenacao por aderencia e a leitura de sabor estao disponiveis.")
         else:
-            st.info("Curriculo carregado. Clique em analisar para atualizar os matches.")
+            st.info("Curriculo carregado. Clique em analisar para atualizar aderencia e sabor.")
 
     render_hero(len(jobs))
     render_metrics(jobs, match_results)
