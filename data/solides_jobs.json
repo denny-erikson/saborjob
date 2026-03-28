@@ -4,7 +4,7 @@
     "company": "Grupo GBI",
     "location": "São Paulo - SP",
     "url": "https://vagas.solides.com.br/vaga/815666/analista-desenvolvedor-full-stack-java-senior",
-    "posted_at": "Postada há 4 dias",
+    "posted_at": "Postada há 5 dias",
     "tags": [
       "Remoto",
       "Sênior"
@@ -16,7 +16,7 @@
     "company": "PERSEUS TECNOLOGIA DA INFORMACAO S.A.",
     "location": "Porto Alegre - RS",
     "url": "https://vagas.solides.com.br/vaga/814125/desenvolvedor-full-stack-pleno-28c23-2f-angular29",
-    "posted_at": "Postada há 8 dias",
+    "posted_at": "Postada há 9 dias",
     "tags": [
       "Remoto",
       "Pleno"
@@ -28,7 +28,7 @@
     "company": "BRASIL CARD INSTITUICAO DE PAGAMENTOS LTDA",
     "location": "Monte Belo - MG",
     "url": "https://vagas.solides.com.br/vaga/813717/desenvolvedor28a29-back-end-pleno-",
-    "posted_at": "Postada há 8 dias",
+    "posted_at": "Postada há 9 dias",
     "tags": [
       "Remoto",
       "Pleno"
@@ -40,7 +40,7 @@
     "company": "GLOBAL TECH HOLDING PARTICIPACOES & INVESTIMENTOS LTDA",
     "location": "Rio de Janeiro - RJ",
     "url": "https://vagas.solides.com.br/vaga/804637/desenvolvedor28a29-full-stack-python-pleno-plus",
-    "posted_at": "Postada há 22 dias",
+    "posted_at": "Postada há 23 dias",
     "tags": [
       "Remoto",
       "Pleno"
@@ -52,7 +52,7 @@
     "company": "GLOBAL TECH HOLDING PARTICIPACOES & INVESTIMENTOS LTDA",
     "location": "Rio de Janeiro - RJ",
     "url": "https://vagas.solides.com.br/vaga/802060/desenvolvedor28a29-full-stack-python-senior",
-    "posted_at": "Postada há 24 dias",
+    "posted_at": "Postada há 25 dias",
     "tags": [
       "Remoto",
       "Pleno"
@@ -64,7 +64,7 @@
     "company": "SUPRANET TELECOM E INFORMATICA LTDA",
     "location": "Ipatinga - MG",
     "url": "https://vagas.solides.com.br/vaga/800808/5bvaga-remota2fhibrida5d-desenvolvedor-full-stack-28pleno2facima29-",
-    "posted_at": "Postada há 28 dias",
+    "posted_at": "Postada há 29 dias",
     "tags": [
       "Remoto",
       "Pleno",
@@ -78,7 +78,7 @@
     "company": "Empresa confidencial",
     "location": "Vila Velha - ES",
     "url": "https://vagas.solides.com.br/vaga/799849/desenvolvedor-full-stack",
-    "posted_at": "Postada há 29 dias",
+    "posted_at": "Postada há 1 mês",
     "tags": [
       "Remoto"
     ],
@@ -109,18 +109,6 @@
     "source": "solides"
   },
   {
-    "title": "Desenvolvedor Full Stack Python Senior",
-    "company": "GLOBAL TECH HOLDING PARTICIPACOES & INVESTIMENTOS LTDA",
-    "location": "Rio de Janeiro - RJ",
-    "url": "https://vagas.solides.com.br/vaga/795688/desenvolvedor-full-stack-python-senior",
-    "posted_at": "Postada há 1 mês",
-    "tags": [
-      "Remoto",
-      "Pleno"
-    ],
-    "source": "solides"
-  },
-  {
     "title": "DESENVOLVEDOR FULL STACK SR",
     "company": "CALRIZ SISTEMAS LTDA",
     "location": "São Paulo - SP",
@@ -130,6 +118,18 @@
       "Remoto",
       "Pleno",
       "Sênior"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor Full Stack Python Senior",
+    "company": "GLOBAL TECH HOLDING PARTICIPACOES & INVESTIMENTOS LTDA",
+    "location": "Rio de Janeiro - RJ",
+    "url": "https://vagas.solides.com.br/vaga/795688/desenvolvedor-full-stack-python-senior",
+    "posted_at": "Postada há 1 mês",
+    "tags": [
+      "Remoto",
+      "Pleno"
     ],
     "source": "solides"
   },
