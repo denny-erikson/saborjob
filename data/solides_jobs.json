@@ -4,7 +4,7 @@
     "company": "DEVELCODE INFORMATICA LTDA",
     "location": "Caxias do Sul - RS",
     "url": "https://vagas.solides.com.br/vaga/831955/150-desenvolvedor-full-stack-senior-28java-react29",
-    "posted_at": "Postada há 5 dias",
+    "posted_at": "Postada há 6 dias",
     "tags": [
       "Remoto",
       "Sênior"
@@ -134,18 +134,6 @@
     "source": "solides"
   },
   {
-    "title": "Desenvolvedor Back-End -PHP - Meios de pagamentos",
-    "company": "ALUGA MAIS APP LTDA",
-    "location": "São Paulo - SP",
-    "url": "https://vagas.solides.com.br/vaga/770050/desenvolvedor-back-end-php-meios-de-pagamentos",
-    "posted_at": "Postada há 3 meses",
-    "tags": [
-      "Remoto",
-      "Pleno"
-    ],
-    "source": "solides"
-  },
-  {
     "title": "Desenvolvedor Full Stack Junior",
     "company": "Empresa confidencial",
     "location": "São Paulo - SP",
@@ -167,6 +155,18 @@
     "tags": [
       "Remoto",
       "Pleno"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor (a) Full Stack - Sênior (Django e React)",
+    "company": "CAKTO PAY LTDA",
+    "location": "Balneário Camboriú - SC",
+    "url": "https://vagas.solides.com.br/vaga/751433/desenvolvedor-28a29-full-stack-senior-28django-e-react29",
+    "posted_at": "Postada há 5 meses",
+    "tags": [
+      "Remoto",
+      "Sênior"
     ],
     "source": "solides"
   }
