@@ -1,10 +1,33 @@
 [
   {
+    "title": "Desenvolvedor Full Stack",
+    "company": "HOUER CONSULTORIA E CONCESSOES LTDA",
+    "location": "Belo Horizonte - MG",
+    "url": "https://vagas.solides.com.br/vaga/835342/desenvolvedor-full-stack-",
+    "posted_at": "Postada há 1 dia",
+    "tags": [
+      "Remoto",
+      "Pleno"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor(a) Full Stack Pleno (Java + Angular | IA aplicada) - Remoto",
+    "company": "HUB Floripa Participações LTDA",
+    "location": "Florianópolis - SC",
+    "url": "https://vagas.solides.com.br/vaga/836081/desenvolvedor28a29-full-stack-pleno-28java-angular-7c-ia-aplicada29-remoto",
+    "posted_at": "Postada há 1 dia",
+    "tags": [
+      "Remoto"
+    ],
+    "source": "solides"
+  },
+  {
     "title": "150 - Desenvolvedor Full Stack Sênior (Java + React)",
     "company": "DEVELCODE INFORMATICA LTDA",
     "location": "Caxias do Sul - RS",
     "url": "https://vagas.solides.com.br/vaga/831955/150-desenvolvedor-full-stack-senior-28java-react29",
-    "posted_at": "Postada há 7 dias",
+    "posted_at": "Postada há 8 dias",
     "tags": [
       "Remoto",
       "Sênior"
@@ -32,18 +55,6 @@
     "tags": [
       "Remoto",
       "Pleno"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor IX (Sênior)",
-    "company": "EMR EU MEDICO RESIDENTE ENSINO LTDA",
-    "location": "Recife - PE",
-    "url": "https://vagas.solides.com.br/vaga/808230/desenvolvedor-ix-28senior29-",
-    "posted_at": "Postada há 1 mês",
-    "tags": [
-      "Remoto",
-      "Sênior"
     ],
     "source": "solides"
   },
@@ -155,18 +166,6 @@
     "tags": [
       "Remoto",
       "Pleno"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor (a) Full Stack - Sênior (Django e React)",
-    "company": "CAKTO PAY LTDA",
-    "location": "Balneário Camboriú - SC",
-    "url": "https://vagas.solides.com.br/vaga/751433/desenvolvedor-28a29-full-stack-senior-28django-e-react29",
-    "posted_at": "Postada há 5 meses",
-    "tags": [
-      "Remoto",
-      "Sênior"
     ],
     "source": "solides"
   }
