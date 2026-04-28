@@ -1,10 +1,21 @@
 [
   {
+    "title": "Desenvolvedor(a) Full Stack Pleno (Java + Angular | IA aplicada) - Remoto",
+    "company": "HUB Floripa Participações LTDA",
+    "location": "Florianópolis - SC",
+    "url": "https://vagas.solides.com.br/vaga/836474/desenvolvedor28a29-full-stack-pleno-28java-angular-7c-ia-aplicada29-remoto",
+    "posted_at": "Postada há 1 dia",
+    "tags": [
+      "Remoto"
+    ],
+    "source": "solides"
+  },
+  {
     "title": "Desenvolvedor Full Stack",
     "company": "HOUER CONSULTORIA E CONCESSOES LTDA",
     "location": "Belo Horizonte - MG",
     "url": "https://vagas.solides.com.br/vaga/835342/desenvolvedor-full-stack-",
-    "posted_at": "Postada há 3 dias",
+    "posted_at": "Postada há 4 dias",
     "tags": [
       "Remoto",
       "Pleno"
@@ -16,7 +27,7 @@
     "company": "HUB Floripa Participações LTDA",
     "location": "Florianópolis - SC",
     "url": "https://vagas.solides.com.br/vaga/836081/desenvolvedor28a29-full-stack-pleno-28java-angular-7c-ia-aplicada29-remoto",
-    "posted_at": "Postada há 3 dias",
+    "posted_at": "Postada há 4 dias",
     "tags": [
       "Remoto"
     ],
@@ -27,7 +38,7 @@
     "company": "DEVELCODE INFORMATICA LTDA",
     "location": "Caxias do Sul - RS",
     "url": "https://vagas.solides.com.br/vaga/831955/150-desenvolvedor-full-stack-senior-28java-react29",
-    "posted_at": "Postada há 10 dias",
+    "posted_at": "Postada há 11 dias",
     "tags": [
       "Remoto",
       "Sênior"
@@ -125,7 +136,7 @@
     "company": "RHAMA CONSULTORIA AMBIENTAL LTDA",
     "location": "Porto Alegre - RS",
     "url": "https://vagas.solides.com.br/vaga/791855/desenvolvedor-full-stack-pl",
-    "posted_at": "Postada há 2 meses",
+    "posted_at": "Postada há 3 meses",
     "tags": [
       "Remoto",
       "Pleno"
@@ -154,18 +165,6 @@
       "Remoto",
       "Pleno",
       "Sênior"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor Full Stack Pleno",
-    "company": "BH-E LTDA",
-    "location": "São José - SC",
-    "url": "https://vagas.solides.com.br/vaga/763501/desenvolvedor-full-stack-pleno",
-    "posted_at": "Postada há 4 meses",
-    "tags": [
-      "Remoto",
-      "Pleno"
     ],
     "source": "solides"
   }
