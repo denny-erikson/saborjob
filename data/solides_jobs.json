@@ -4,7 +4,7 @@
     "company": "HUB Floripa Participações LTDA",
     "location": "Florianópolis - SC",
     "url": "https://vagas.solides.com.br/vaga/836474/desenvolvedor28a29-full-stack-pleno-28java-angular-7c-ia-aplicada29-remoto",
-    "posted_at": "Postada há 10 dias",
+    "posted_at": "Postada há 11 dias",
     "tags": [
       "Remoto"
     ],
@@ -15,7 +15,7 @@
     "company": "HUB Floripa Participações LTDA",
     "location": "Florianópolis - SC",
     "url": "https://vagas.solides.com.br/vaga/836081/desenvolvedor28a29-full-stack-pleno-28java-angular-7c-ia-aplicada29-remoto",
-    "posted_at": "Postada há 13 dias",
+    "posted_at": "Postada há 14 dias",
     "tags": [
       "Remoto"
     ],
@@ -26,7 +26,7 @@
     "company": "DEVELCODE INFORMATICA LTDA",
     "location": "Caxias do Sul - RS",
     "url": "https://vagas.solides.com.br/vaga/831955/150-desenvolvedor-full-stack-senior-28java-react29",
-    "posted_at": "Postada há 20 dias",
+    "posted_at": "Postada há 21 dias",
     "tags": [
       "Remoto",
       "Sênior"
@@ -107,19 +107,6 @@
     "source": "solides"
   },
   {
-    "title": "DESENVOLVEDOR FULL STACK SR",
-    "company": "CALRIZ SISTEMAS LTDA",
-    "location": "São Paulo - SP",
-    "url": "https://vagas.solides.com.br/vaga/796177/desenvolvedor-full-stack-sr",
-    "posted_at": "Postada há 3 meses",
-    "tags": [
-      "Remoto",
-      "Pleno",
-      "Sênior"
-    ],
-    "source": "solides"
-  },
-  {
     "title": "Desenvolvedor Full Stack PL",
     "company": "RHAMA CONSULTORIA AMBIENTAL LTDA",
     "location": "Porto Alegre - RS",
@@ -165,6 +152,18 @@
     "tags": [
       "Remoto",
       "Pleno"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor (a) Full Stack - Sênior (Django e React)",
+    "company": "CAKTO PAY LTDA",
+    "location": "Balneário Camboriú - SC",
+    "url": "https://vagas.solides.com.br/vaga/751433/desenvolvedor-28a29-full-stack-senior-28django-e-react29",
+    "posted_at": "Postada há 5 meses",
+    "tags": [
+      "Remoto",
+      "Sênior"
     ],
     "source": "solides"
   }
