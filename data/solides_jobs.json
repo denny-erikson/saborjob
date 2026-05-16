@@ -1,10 +1,24 @@
 [
   {
+    "title": "Vaga Desenvolvedor(a) Back-end / Full Stack",
+    "company": "AR ONLINE TECNOLOGIA LTDA",
+    "location": "Vila Velha - ES",
+    "url": "https://vagas.solides.com.br/vaga/849080/vaga-desenvolvedor28a29-back-end-2f-full-stack",
+    "posted_at": "Postada há 1 dia",
+    "tags": [
+      "Remoto",
+      "Pleno",
+      "Sênior",
+      "Especialista"
+    ],
+    "source": "solides"
+  },
+  {
     "title": "Desenvolvedor(a) Full Stack Pleno (Java + Angular | IA aplicada) - Remoto",
     "company": "HUB Floripa Participações LTDA",
     "location": "Florianópolis - SC",
     "url": "https://vagas.solides.com.br/vaga/836474/desenvolvedor28a29-full-stack-pleno-28java-angular-7c-ia-aplicada29-remoto",
-    "posted_at": "Postada há 18 dias",
+    "posted_at": "Postada há 19 dias",
     "tags": [
       "Remoto"
     ],
@@ -15,7 +29,7 @@
     "company": "DEVELCODE INFORMATICA LTDA",
     "location": "Caxias do Sul - RS",
     "url": "https://vagas.solides.com.br/vaga/831955/150-desenvolvedor-full-stack-senior-28java-react29",
-    "posted_at": "Postada há 28 dias",
+    "posted_at": "Postada há 29 dias",
     "tags": [
       "Remoto",
       "Sênior"
@@ -72,18 +86,6 @@
     "source": "solides"
   },
   {
-    "title": "Desenvolvedor@ Full Stack",
-    "company": "STATTUS4 CIDADES INTELIGENTES E SUSTENTABILIDADE LTDA",
-    "location": "Sorocaba - SP",
-    "url": "https://vagas.solides.com.br/vaga/797661/desenvolvedor40-full-stack-",
-    "posted_at": "Postada há 3 meses",
-    "tags": [
-      "Remoto",
-      "Pleno"
-    ],
-    "source": "solides"
-  },
-  {
     "title": "Analista de Software SR \" Full Stack\" - Remoto",
     "company": "INSTITUTO HARDWARE BR - HBR",
     "location": "Brasília - DF",
@@ -92,6 +94,18 @@
     "tags": [
       "Remoto",
       "Sênior"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor@ Full Stack",
+    "company": "STATTUS4 CIDADES INTELIGENTES E SUSTENTABILIDADE LTDA",
+    "location": "Sorocaba - SP",
+    "url": "https://vagas.solides.com.br/vaga/797661/desenvolvedor40-full-stack-",
+    "posted_at": "Postada há 3 meses",
+    "tags": [
+      "Remoto",
+      "Pleno"
     ],
     "source": "solides"
   },
@@ -153,18 +167,6 @@
     "tags": [
       "Remoto",
       "Sênior"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor Full Stack - Pleno",
-    "company": "PRIME LAN- COMERCIO E SERVICOS DE INFORMATICA EIRELI",
-    "location": "Vitória - ES",
-    "url": "https://vagas.solides.com.br/vaga/724269/desenvolvedor-full-stack-pleno",
-    "posted_at": "Postada há 7 meses",
-    "tags": [
-      "Remoto",
-      "Pleno"
     ],
     "source": "solides"
   }
