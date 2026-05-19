@@ -1,10 +1,22 @@
 [
   {
+    "title": "Full Stack Developer",
+    "company": "INVENZI TECNOLOGIA LTDA.",
+    "location": "São Paulo - SP",
+    "url": "https://vagas.solides.com.br/vaga/849859/full-stack-developer",
+    "posted_at": "Postada há 2 dias",
+    "tags": [
+      "Remoto",
+      "Pleno"
+    ],
+    "source": "solides"
+  },
+  {
     "title": "Vaga Desenvolvedor(a) Back-end / Full Stack",
     "company": "AR ONLINE TECNOLOGIA LTDA",
     "location": "Vila Velha - ES",
     "url": "https://vagas.solides.com.br/vaga/849080/vaga-desenvolvedor28a29-back-end-2f-full-stack",
-    "posted_at": "Postada há 4 dias",
+    "posted_at": "Postada há 5 dias",
     "tags": [
       "Remoto",
       "Pleno",
@@ -18,7 +30,7 @@
     "company": "HUB Floripa Participações LTDA",
     "location": "Florianópolis - SC",
     "url": "https://vagas.solides.com.br/vaga/836474/desenvolvedor28a29-full-stack-pleno-28java-angular-7c-ia-aplicada29-remoto",
-    "posted_at": "Postada há 22 dias",
+    "posted_at": "Postada há 23 dias",
     "tags": [
       "Remoto"
     ],
@@ -155,18 +167,6 @@
     "tags": [
       "Remoto",
       "Pleno"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor (a) Full Stack - Sênior (Django e React)",
-    "company": "CAKTO PAY LTDA",
-    "location": "Balneário Camboriú - SC",
-    "url": "https://vagas.solides.com.br/vaga/751433/desenvolvedor-28a29-full-stack-senior-28django-e-react29",
-    "posted_at": "Postada há 6 meses",
-    "tags": [
-      "Remoto",
-      "Sênior"
     ],
     "source": "solides"
   }
