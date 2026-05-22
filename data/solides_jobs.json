@@ -23,20 +23,6 @@
     "source": "solides"
   },
   {
-    "title": "Vaga Desenvolvedor(a) Back-end / Full Stack",
-    "company": "AR ONLINE TECNOLOGIA LTDA",
-    "location": "Vila Velha - ES",
-    "url": "https://vagas.solides.com.br/vaga/849080/vaga-desenvolvedor28a29-back-end-2f-full-stack",
-    "posted_at": "Postada há 7 dias",
-    "tags": [
-      "Remoto",
-      "Pleno",
-      "Sênior",
-      "Especialista"
-    ],
-    "source": "solides"
-  },
-  {
     "title": "Desenvolvedor(a) Full Stack Pleno (Java + Angular | IA aplicada) - Remoto",
     "company": "HUB Floripa Participações LTDA",
     "location": "Florianópolis - SC",
@@ -163,6 +149,18 @@
     "location": "Vitória - ES",
     "url": "https://vagas.solides.com.br/vaga/724269/desenvolvedor-full-stack-pleno",
     "posted_at": "Postada há 7 meses",
+    "tags": [
+      "Remoto",
+      "Pleno"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor(a) Full Stack Pleno – C# / Angular",
+    "company": "Empresa confidencial",
+    "location": "Local não informado",
+    "url": "https://vagas.solides.com.br/vaga/715686/desenvolvedor28a29-full-stack-pleno-e28093-c23-2f-angular",
+    "posted_at": "Postada há 8 meses",
     "tags": [
       "Remoto",
       "Pleno"
