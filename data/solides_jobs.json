@@ -4,7 +4,7 @@
     "company": "Eteg Tecnologia Da Informação S/a",
     "location": "Belo Horizonte - MG",
     "url": "https://vagas.solides.com.br/vaga/850714/desenvolvedor-full-stack-mobile-senior",
-    "posted_at": "Postada há 4 dias",
+    "posted_at": "Postada há 5 dias",
     "tags": [
       "Remoto"
     ],
@@ -15,7 +15,7 @@
     "company": "INVENZI TECNOLOGIA LTDA.",
     "location": "São Paulo - SP",
     "url": "https://vagas.solides.com.br/vaga/849859/full-stack-developer",
-    "posted_at": "Postada há 5 dias",
+    "posted_at": "Postada há 6 dias",
     "tags": [
       "Remoto",
       "Pleno"
@@ -27,7 +27,7 @@
     "company": "HUB Floripa Participações LTDA",
     "location": "Florianópolis - SC",
     "url": "https://vagas.solides.com.br/vaga/836474/desenvolvedor28a29-full-stack-pleno-28java-angular-7c-ia-aplicada29-remoto",
-    "posted_at": "Postada há 26 dias",
+    "posted_at": "Postada há 27 dias",
     "tags": [
       "Remoto"
     ],
@@ -80,17 +80,6 @@
       "Pleno",
       "Sênior",
       "Especialista"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "DESENVOLVEDOR FULL STACK",
-    "company": "Empresa confidencial",
-    "location": "Vila Velha - ES",
-    "url": "https://vagas.solides.com.br/vaga/799849/desenvolvedor-full-stack",
-    "posted_at": "Postada há 3 meses",
-    "tags": [
-      "Remoto"
     ],
     "source": "solides"
   },
@@ -164,6 +153,18 @@
     "tags": [
       "Remoto",
       "Pleno"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor(a) Full Stack Sênior – C#/ Angular",
+    "company": "Empresa confidencial",
+    "location": "Local não informado",
+    "url": "https://vagas.solides.com.br/vaga/715647/desenvolvedor28a29-full-stack-senior-e28093-c232f-angular",
+    "posted_at": "Postada há 8 meses",
+    "tags": [
+      "Remoto",
+      "Sênior"
     ],
     "source": "solides"
   }
