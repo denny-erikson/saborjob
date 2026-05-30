@@ -1,5 +1,42 @@
 [
   {
+    "title": "Desenvolvedor Full Stack Sênior — Foco Front-End",
+    "company": "ASSOCIACAO BRASILEIRA DE RECURSOS EM TELECOMUNICACOES",
+    "location": "Brasília - DF",
+    "url": "https://vagas.solides.com.br/vaga/857150/desenvolvedor-full-stack-senior-e28094-foco-front-end",
+    "posted_at": "Postada há 2 dias",
+    "tags": [
+      "Remoto",
+      "Sênior"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor Full Stack Pleno",
+    "company": "ASSOCIACAO BRASILEIRA DE RECURSOS EM TELECOMUNICACOES",
+    "location": "Brasília - DF",
+    "url": "https://vagas.solides.com.br/vaga/857311/desenvolvedor-full-stack-pleno",
+    "posted_at": "Postada há 2 dias",
+    "tags": [
+      "Remoto",
+      "Pleno"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor Full Stack",
+    "company": "TRENTINI LTDA",
+    "location": "Campo Largo - PR",
+    "url": "https://vagas.solides.com.br/vaga/856779/desenvolvedor-full-stack",
+    "posted_at": "Postada há 2 dias",
+    "tags": [
+      "Remoto",
+      "Pleno",
+      "Sênior"
+    ],
+    "source": "solides"
+  },
+  {
     "title": "DESENVOLVEDOR(A) DE SOFTWARE FULL STACK(com conhecimento em IA)",
     "company": "Irrah Tech",
     "location": "Maringá - PR",
@@ -42,6 +79,18 @@
     "posted_at": "Postada há 1 mês",
     "tags": [
       "Remoto"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "DESENVOLVEDOR FULL STACK SENIOR (Java + Spring boot + React)",
+    "company": "REVISE COMERCIO LTDA",
+    "location": "Campinas - SP",
+    "url": "https://vagas.solides.com.br/vaga/835456/desenvolvedor-full-stack-senior-28java-spring-boot-react29",
+    "posted_at": "Postada há 1 mês",
+    "tags": [
+      "Remoto",
+      "Sênior"
     ],
     "source": "solides"
   },
@@ -113,55 +162,6 @@
     "location": "Porto Alegre - RS",
     "url": "https://vagas.solides.com.br/vaga/791855/desenvolvedor-full-stack-pl",
     "posted_at": "Postada há 4 meses",
-    "tags": [
-      "Remoto",
-      "Pleno"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor Full Stack Junior",
-    "company": "Empresa confidencial",
-    "location": "São Paulo - SP",
-    "url": "https://vagas.solides.com.br/vaga/765153/desenvolvedor-full-stack-junior",
-    "posted_at": "Postada há 5 meses",
-    "tags": [
-      "Remoto",
-      "Pleno",
-      "Sênior"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor (a) Full Stack - Sênior (Django e React)",
-    "company": "CAKTO PAY LTDA",
-    "location": "Balneário Camboriú - SC",
-    "url": "https://vagas.solides.com.br/vaga/751433/desenvolvedor-28a29-full-stack-senior-28django-e-react29",
-    "posted_at": "Postada há 6 meses",
-    "tags": [
-      "Remoto",
-      "Sênior"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor Full Stack - Pleno",
-    "company": "PRIME LAN- COMERCIO E SERVICOS DE INFORMATICA EIRELI",
-    "location": "Vitória - ES",
-    "url": "https://vagas.solides.com.br/vaga/724269/desenvolvedor-full-stack-pleno",
-    "posted_at": "Postada há 7 meses",
-    "tags": [
-      "Remoto",
-      "Pleno"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor(a) Full Stack Pleno – C# / Angular",
-    "company": "Empresa confidencial",
-    "location": "Local não informado",
-    "url": "https://vagas.solides.com.br/vaga/715686/desenvolvedor28a29-full-stack-pleno-e28093-c23-2f-angular",
-    "posted_at": "Postada há 8 meses",
     "tags": [
       "Remoto",
       "Pleno"
