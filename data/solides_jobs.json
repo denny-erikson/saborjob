@@ -60,18 +60,6 @@
     "source": "solides"
   },
   {
-    "title": "Full Stack Developer",
-    "company": "INVENZI TECNOLOGIA LTDA.",
-    "location": "São Paulo - SP",
-    "url": "https://vagas.solides.com.br/vaga/849859/full-stack-developer",
-    "posted_at": "Postada há 26 dias",
-    "tags": [
-      "Remoto",
-      "Pleno"
-    ],
-    "source": "solides"
-  },
-  {
     "title": "Desenvolvedor(a) Full Stack Pleno (Java + Angular | IA aplicada) - Remoto",
     "company": "HUB Floripa Participações LTDA",
     "location": "Florianópolis - SC",
@@ -165,6 +153,19 @@
     "tags": [
       "Remoto",
       "Pleno"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor Full Stack Junior",
+    "company": "Empresa confidencial",
+    "location": "São Paulo - SP",
+    "url": "https://vagas.solides.com.br/vaga/765153/desenvolvedor-full-stack-junior",
+    "posted_at": "Postada há 5 meses",
+    "tags": [
+      "Remoto",
+      "Pleno",
+      "Sênior"
     ],
     "source": "solides"
   }
