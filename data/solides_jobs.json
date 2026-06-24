@@ -1,10 +1,34 @@
 [
   {
+    "title": "Desenvolvedor Full Stack Pleno",
+    "company": "BH-E LTDA",
+    "location": "São José - SC",
+    "url": "https://vagas.solides.com.br/vaga/871902/desenvolvedor-full-stack-pleno",
+    "posted_at": "Postada há 2 dias",
+    "tags": [
+      "Remoto",
+      "Pleno"
+    ],
+    "source": "solides"
+  },
+  {
     "title": "DESENVOLVEDOR FULL STACK - SENIOR",
     "company": "PATHBIT LTDA",
     "location": "São Paulo - SP",
     "url": "https://vagas.solides.com.br/vaga/871643/desenvolvedor-full-stack-senior",
     "posted_at": "Postada há 2 dias",
+    "tags": [
+      "Remoto",
+      "Sênior"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor Full Stack Sênior — Foco Front-End",
+    "company": "ASSOCIACAO BRASILEIRA DE RECURSOS EM TELECOMUNICACOES",
+    "location": "Brasília - DF",
+    "url": "https://vagas.solides.com.br/vaga/857150/desenvolvedor-full-stack-senior-e28094-foco-front-end",
+    "posted_at": "Postada há 27 dias",
     "tags": [
       "Remoto",
       "Sênior"
@@ -20,18 +44,6 @@
     "tags": [
       "Remoto",
       "Pleno"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor Full Stack Sênior — Foco Front-End",
-    "company": "ASSOCIACAO BRASILEIRA DE RECURSOS EM TELECOMUNICACOES",
-    "location": "Brasília - DF",
-    "url": "https://vagas.solides.com.br/vaga/857150/desenvolvedor-full-stack-senior-e28094-foco-front-end",
-    "posted_at": "Postada há 27 dias",
-    "tags": [
-      "Remoto",
-      "Sênior"
     ],
     "source": "solides"
   },
@@ -152,19 +164,6 @@
     "tags": [
       "Remoto",
       "Pleno"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor Full Stack Junior",
-    "company": "Empresa confidencial",
-    "location": "São Paulo - SP",
-    "url": "https://vagas.solides.com.br/vaga/765153/desenvolvedor-full-stack-junior",
-    "posted_at": "Postada há 6 meses",
-    "tags": [
-      "Remoto",
-      "Pleno",
-      "Sênior"
     ],
     "source": "solides"
   }
