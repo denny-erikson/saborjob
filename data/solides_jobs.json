@@ -1,10 +1,22 @@
 [
   {
+    "title": "Full Stack Developer",
+    "company": "INVENZI TECNOLOGIA LTDA.",
+    "location": "São Paulo - SP",
+    "url": "https://vagas.solides.com.br/vaga/889784/full-stack-developer-",
+    "posted_at": "Postada há 1 dia",
+    "tags": [
+      "Remoto",
+      "Pleno"
+    ],
+    "source": "solides"
+  },
+  {
     "title": "Desenvolvedor Full Stack Sênior",
     "company": "LITROZ COMBUSTIVEIS E INTERMEDIACAO DE NEGOCIOS LTDA",
     "location": "Belo Horizonte - MG",
     "url": "https://vagas.solides.com.br/vaga/880891/desenvolvedor-full-stack-senior-",
-    "posted_at": "Postada há 14 dias",
+    "posted_at": "Postada há 15 dias",
     "tags": [
       "Remoto",
       "Sênior"
@@ -39,18 +51,6 @@
     "company": "REVISE COMERCIO LTDA",
     "location": "Campinas - SP",
     "url": "https://vagas.solides.com.br/vaga/835456/desenvolvedor-full-stack-senior-28java-spring-boot-react29",
-    "posted_at": "Postada há 3 meses",
-    "tags": [
-      "Remoto",
-      "Sênior"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "150 - Desenvolvedor Full Stack Sênior (Java + React)",
-    "company": "DEVELCODE INFORMATICA LTDA",
-    "location": "Caxias do Sul - RS",
-    "url": "https://vagas.solides.com.br/vaga/831955/150-desenvolvedor-full-stack-senior-28java-react29",
     "posted_at": "Postada há 3 meses",
     "tags": [
       "Remoto",
