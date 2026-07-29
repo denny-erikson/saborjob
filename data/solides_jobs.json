@@ -4,7 +4,7 @@
     "company": "Relou RH Especializado",
     "location": "Belo Horizonte - MG",
     "url": "https://vagas.solides.com.br/vaga/891618/senior-software-engineer-28full-stack29-7c-home-office",
-    "posted_at": "Postada há 4 dias",
+    "posted_at": "Postada há 5 dias",
     "tags": [
       "Remoto",
       "Sênior"
@@ -16,7 +16,7 @@
     "company": "MULTIPEDIDOS",
     "location": "Joinville - SC",
     "url": "https://vagas.solides.com.br/vaga/891340/desenvolvedor-full-stack-pl-",
-    "posted_at": "Postada há 4 dias",
+    "posted_at": "Postada há 5 dias",
     "tags": [
       "Remoto",
       "Pleno"
@@ -28,7 +28,7 @@
     "company": "INVENZI TECNOLOGIA LTDA.",
     "location": "São Paulo - SP",
     "url": "https://vagas.solides.com.br/vaga/889784/full-stack-developer-",
-    "posted_at": "Postada há 6 dias",
+    "posted_at": "Postada há 7 dias",
     "tags": [
       "Remoto",
       "Pleno"
@@ -40,22 +40,10 @@
     "company": "LITROZ COMBUSTIVEIS E INTERMEDIACAO DE NEGOCIOS LTDA",
     "location": "Belo Horizonte - MG",
     "url": "https://vagas.solides.com.br/vaga/880891/desenvolvedor-full-stack-senior-",
-    "posted_at": "Postada há 20 dias",
+    "posted_at": "Postada há 21 dias",
     "tags": [
       "Remoto",
       "Sênior"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor Full Stack Pleno",
-    "company": "ASSOCIACAO BRASILEIRA DE RECURSOS EM TELECOMUNICACOES",
-    "location": "Brasília - DF",
-    "url": "https://vagas.solides.com.br/vaga/857311/desenvolvedor-full-stack-pleno",
-    "posted_at": "Postada há 2 meses",
-    "tags": [
-      "Remoto",
-      "Pleno"
     ],
     "source": "solides"
   },
@@ -117,6 +105,18 @@
       "Pleno",
       "Sênior",
       "Especialista"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor Full Stack PL",
+    "company": "RHAMA CONSULTORIA AMBIENTAL LTDA",
+    "location": "Porto Alegre - RS",
+    "url": "https://vagas.solides.com.br/vaga/791855/desenvolvedor-full-stack-pl",
+    "posted_at": "Postada há 6 meses",
+    "tags": [
+      "Remoto",
+      "Pleno"
     ],
     "source": "solides"
   }
