@@ -1,10 +1,22 @@
 [
   {
+    "title": "Desenvolvedor Full Stack SR",
+    "company": "MULTIPEDIDOS",
+    "location": "Joinville - SC",
+    "url": "https://vagas.solides.com.br/vaga/895453/desenvolvedor-full-stack-sr",
+    "posted_at": "Postada há 1 dia",
+    "tags": [
+      "Remoto",
+      "Sênior"
+    ],
+    "source": "solides"
+  },
+  {
     "title": "187 - Desenvolvedor Full Stack Pleno/Sênior (Node | React | React Native)",
     "company": "DEVELCODE INFORMATICA LTDA",
     "location": "Caxias do Sul - RS",
     "url": "https://vagas.solides.com.br/vaga/894697/187-desenvolvedor-full-stack-pleno2fsenior-28node-7c-react-7c-react-native29",
-    "posted_at": "Postada há 1 dia",
+    "posted_at": "Postada há 2 dias",
     "tags": [
       "Remoto",
       "Pleno",
@@ -17,7 +29,7 @@
     "company": "MULTIPEDIDOS",
     "location": "Joinville - SC",
     "url": "https://vagas.solides.com.br/vaga/891340/desenvolvedor-full-stack-pl-",
-    "posted_at": "Postada há 7 dias",
+    "posted_at": "Postada há 8 dias",
     "tags": [
       "Remoto",
       "Pleno"
@@ -29,7 +41,7 @@
     "company": "INVENZI TECNOLOGIA LTDA.",
     "location": "São Paulo - SP",
     "url": "https://vagas.solides.com.br/vaga/889784/full-stack-developer-",
-    "posted_at": "Postada há 9 dias",
+    "posted_at": "Postada há 10 dias",
     "tags": [
       "Remoto",
       "Pleno"
@@ -105,19 +117,6 @@
     "tags": [
       "Remoto",
       "Pleno"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor Full Stack Junior",
-    "company": "Empresa confidencial",
-    "location": "São Paulo - SP",
-    "url": "https://vagas.solides.com.br/vaga/765153/desenvolvedor-full-stack-junior",
-    "posted_at": "Postada há 7 meses",
-    "tags": [
-      "Remoto",
-      "Pleno",
-      "Sênior"
     ],
     "source": "solides"
   }
