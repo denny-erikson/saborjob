@@ -1,21 +1,10 @@
 [
   {
-    "title": "Engenheiro de Produtos de IA",
-    "company": "NCT INFORMATICA LTDA",
-    "location": "Brasília - DF",
-    "url": "https://vagas.solides.com.br/vaga/895451/engenheiro-de-produtos-de-ia",
-    "posted_at": "Postada há 10 dias",
-    "tags": [
-      "Remoto"
-    ],
-    "source": "solides"
-  },
-  {
     "title": "Desenvolvedor Full Stack SR",
     "company": "MULTIPEDIDOS",
     "location": "Joinville - SC",
     "url": "https://vagas.solides.com.br/vaga/895453/desenvolvedor-full-stack-sr",
-    "posted_at": "Postada há 10 dias",
+    "posted_at": "Postada há 11 dias",
     "tags": [
       "Remoto",
       "Sênior"
@@ -27,7 +16,7 @@
     "company": "DEVELCODE INFORMATICA LTDA",
     "location": "Caxias do Sul - RS",
     "url": "https://vagas.solides.com.br/vaga/894697/187-desenvolvedor-full-stack-pleno2fsenior-28node-7c-react-7c-react-native29",
-    "posted_at": "Postada há 11 dias",
+    "posted_at": "Postada há 12 dias",
     "tags": [
       "Remoto",
       "Pleno",
@@ -40,7 +29,7 @@
     "company": "INVENZI TECNOLOGIA LTDA.",
     "location": "São Paulo - SP",
     "url": "https://vagas.solides.com.br/vaga/889784/full-stack-developer-",
-    "posted_at": "Postada há 19 dias",
+    "posted_at": "Postada há 20 dias",
     "tags": [
       "Remoto",
       "Pleno"
@@ -98,7 +87,7 @@
     "company": "SUPRANET TELECOM E INFORMATICA LTDA",
     "location": "Ipatinga - MG",
     "url": "https://vagas.solides.com.br/vaga/800808/5bvaga-remota2fhibrida5d-desenvolvedor-full-stack-28pleno2facima29-",
-    "posted_at": "Postada há 5 meses",
+    "posted_at": "Postada há 6 meses",
     "tags": [
       "Remoto",
       "Pleno",
@@ -116,6 +105,19 @@
     "tags": [
       "Remoto",
       "Pleno"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor Full Stack Junior",
+    "company": "Empresa confidencial",
+    "location": "São Paulo - SP",
+    "url": "https://vagas.solides.com.br/vaga/765153/desenvolvedor-full-stack-junior",
+    "posted_at": "Postada há 7 meses",
+    "tags": [
+      "Remoto",
+      "Pleno",
+      "Sênior"
     ],
     "source": "solides"
   }
