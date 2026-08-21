@@ -1,10 +1,22 @@
 [
   {
+    "title": "Desenvolvedor(a) Sênior Full Stack",
+    "company": "Fmx Solucoes Em Tecnologia Ltda",
+    "location": "Araçatuba - SP",
+    "url": "https://vagas.solides.com.br/vaga/907652/desenvolvedor28a29-senior-full-stack-",
+    "posted_at": "Postada há 1 dia",
+    "tags": [
+      "Remoto",
+      "Sênior"
+    ],
+    "source": "solides"
+  },
+  {
     "title": "Desenvolvedor(a) Full Stack Pleno/Sênior",
     "company": "AUTEN ENERGY LTDA",
     "location": "Florianópolis - SC",
     "url": "https://vagas.solides.com.br/vaga/902683/desenvolvedor28a29-full-stack-pleno2fsenior-",
-    "posted_at": "Postada há 8 dias",
+    "posted_at": "Postada há 9 dias",
     "tags": [
       "Remoto",
       "Sênior",
@@ -17,7 +29,7 @@
     "company": "MULTIPEDIDOS",
     "location": "Joinville - SC",
     "url": "https://vagas.solides.com.br/vaga/895453/desenvolvedor-full-stack-sr",
-    "posted_at": "Postada há 20 dias",
+    "posted_at": "Postada há 21 dias",
     "tags": [
       "Remoto",
       "Sênior"
@@ -29,7 +41,7 @@
     "company": "DEVELCODE INFORMATICA LTDA",
     "location": "Caxias do Sul - RS",
     "url": "https://vagas.solides.com.br/vaga/894697/187-desenvolvedor-full-stack-pleno2fsenior-28node-7c-react-7c-react-native29",
-    "posted_at": "Postada há 22 dias",
+    "posted_at": "Postada há 23 dias",
     "tags": [
       "Remoto",
       "Pleno",
@@ -42,7 +54,7 @@
     "company": "INVENZI TECNOLOGIA LTDA.",
     "location": "São Paulo - SP",
     "url": "https://vagas.solides.com.br/vaga/889784/full-stack-developer-",
-    "posted_at": "Postada há 29 dias",
+    "posted_at": "Postada há 1 mês",
     "tags": [
       "Remoto",
       "Pleno"
@@ -106,18 +118,6 @@
       "Pleno",
       "Sênior",
       "Especialista"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "Desenvolvedor (a) Full Stack - Sênior (Django e React)",
-    "company": "CAKTO PAY LTDA",
-    "location": "Balneário Camboriú - SC",
-    "url": "https://vagas.solides.com.br/vaga/751433/desenvolvedor-28a29-full-stack-senior-28django-e-react29",
-    "posted_at": "Postada há 9 meses",
-    "tags": [
-      "Remoto",
-      "Sênior"
     ],
     "source": "solides"
   }
