@@ -1,10 +1,21 @@
 [
   {
+    "title": "Desenvolvedor(a) Full Stack Sênior | Node.js + React.js",
+    "company": "FRAGA ASSESSORIA E TREINAMENTO LTDA",
+    "location": "Londrina - PR",
+    "url": "https://vagas.solides.com.br/vaga/909270/desenvolvedor28a29-full-stack-senior-7c-nodejs-reactjs",
+    "posted_at": "Postada há 1 dia",
+    "tags": [
+      "Remoto"
+    ],
+    "source": "solides"
+  },
+  {
     "title": "Desenvolvedor(a) Sênior Full Stack",
     "company": "Fmx Solucoes Em Tecnologia Ltda",
     "location": "Araçatuba - SP",
     "url": "https://vagas.solides.com.br/vaga/907652/desenvolvedor28a29-senior-full-stack-",
-    "posted_at": "Postada há 4 dias",
+    "posted_at": "Postada há 5 dias",
     "tags": [
       "Remoto",
       "Sênior"
@@ -16,7 +27,7 @@
     "company": "AUTEN ENERGY LTDA",
     "location": "Florianópolis - SC",
     "url": "https://vagas.solides.com.br/vaga/902683/desenvolvedor28a29-full-stack-pleno2fsenior-",
-    "posted_at": "Postada há 12 dias",
+    "posted_at": "Postada há 13 dias",
     "tags": [
       "Remoto",
       "Sênior",
@@ -29,7 +40,7 @@
     "company": "MULTIPEDIDOS",
     "location": "Joinville - SC",
     "url": "https://vagas.solides.com.br/vaga/895453/desenvolvedor-full-stack-sr",
-    "posted_at": "Postada há 24 dias",
+    "posted_at": "Postada há 25 dias",
     "tags": [
       "Remoto",
       "Sênior"
@@ -41,7 +52,7 @@
     "company": "DEVELCODE INFORMATICA LTDA",
     "location": "Caxias do Sul - RS",
     "url": "https://vagas.solides.com.br/vaga/894697/187-desenvolvedor-full-stack-pleno2fsenior-28node-7c-react-7c-react-native29",
-    "posted_at": "Postada há 26 dias",
+    "posted_at": "Postada há 27 dias",
     "tags": [
       "Remoto",
       "Pleno",
@@ -104,20 +115,6 @@
     "tags": [
       "Remoto",
       "Sênior"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "[VAGA REMOTA/HÍBRIDA] Desenvolvedor Full Stack (Pleno/Acima)",
-    "company": "SUPRANET TELECOM E INFORMATICA LTDA",
-    "location": "Ipatinga - MG",
-    "url": "https://vagas.solides.com.br/vaga/800808/5bvaga-remota2fhibrida5d-desenvolvedor-full-stack-28pleno2facima29-",
-    "posted_at": "Postada há 6 meses",
-    "tags": [
-      "Remoto",
-      "Pleno",
-      "Sênior",
-      "Especialista"
     ],
     "source": "solides"
   }
