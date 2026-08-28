@@ -4,7 +4,7 @@
     "company": "FRAGA ASSESSORIA E TREINAMENTO LTDA",
     "location": "Londrina - PR",
     "url": "https://vagas.solides.com.br/vaga/909270/desenvolvedor28a29-full-stack-senior-7c-nodejs-reactjs",
-    "posted_at": "Postada há 4 dias",
+    "posted_at": "Postada há 5 dias",
     "tags": [
       "Remoto"
     ],
@@ -15,10 +15,22 @@
     "company": "AUTEN ENERGY LTDA",
     "location": "Florianópolis - SC",
     "url": "https://vagas.solides.com.br/vaga/902683/desenvolvedor28a29-full-stack-pleno2fsenior-",
-    "posted_at": "Postada há 16 dias",
+    "posted_at": "Postada há 17 dias",
     "tags": [
       "Remoto",
       "Sênior",
+      "Pleno"
+    ],
+    "source": "solides"
+  },
+  {
+    "title": "Desenvolvedor Full Stack PL",
+    "company": "MULTIPEDIDOS",
+    "location": "Joinville - SC",
+    "url": "https://vagas.solides.com.br/vaga/891340/desenvolvedor-full-stack-pl-",
+    "posted_at": "Postada há 1 mês",
+    "tags": [
+      "Remoto",
       "Pleno"
     ],
     "source": "solides"
@@ -102,18 +114,6 @@
     "tags": [
       "Remoto",
       "Pleno"
-    ],
-    "source": "solides"
-  },
-  {
-    "title": "DESENVOLVEDOR SENIOR",
-    "company": "DESENVOLVE TECNOLOGIA, TREINAMENTO E GESTAO POR RESULTADO PA",
-    "location": "São Paulo - SP",
-    "url": "https://vagas.solides.com.br/vaga/644826/desenvolvedor-senior",
-    "posted_at": "Postada há 1 ano",
-    "tags": [
-      "Remoto",
-      "Sênior"
     ],
     "source": "solides"
   }
